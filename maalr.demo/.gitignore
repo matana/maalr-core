@@ -10,6 +10,6 @@ bin/
 
 embedmongo.log
 
-maalr.demo/koelsch/backup/*
-maalr.demo/koelsch/index/*
+/koelsch/backup/*
+/koelsch/index/*
 maalr.demo/.settings/org.eclipse.core.resources.prefs
