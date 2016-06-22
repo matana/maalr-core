@@ -8,7 +8,7 @@
 
 <div id="navi_head">
 	<div id="brand_title">
-		<a class="brand active" href="${dictContext}"><%=Configuration.getInstance().getLongName()%></a>
+		<a id="title_koelsch" data-name="<%=Configuration.getInstance().getLongName()%>" class="brand active" href="${dictContext}"><%=Configuration.getInstance().getLongName()%></a>
 	</div>
 	<%-- MAIN MENU --%>
     <ul class="left">
@@ -17,10 +17,10 @@
     </ul>
 	<%-- LANGUAGE SELECTION --%>	
 	<ul class="right">
-		<li><a href="?pl=ru" class="<%=(session.getAttribute("pl").equals("ru"))?"lang_select active":"lang_select"%>"><fmt:message key="maalr.langSelect.russian" /></a></li>
-		<li><a href="?pl=de" class="<%=(session.getAttribute("pl").equals("de"))?"lang_select active":"lang_select"%>"><fmt:message key="maalr.langSelect.german" /></a></li>
+		<li><a href="?pl=de" class="<%=(session.getAttribute("pl").equals("de"))?"lang_select active":"lang_select"%>"><fmt:message key="maalr.langSelect.german" /></a>|</li>
+		<li><jsp:include page="/maalr_modules/misc/login_widget.jsp" /></li>
 	</ul>
-	<jsp:include page="/maalr_modules/misc/login_widget.jsp" />
+	
 </div>
 
 

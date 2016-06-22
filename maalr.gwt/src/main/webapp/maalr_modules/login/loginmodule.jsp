@@ -8,14 +8,14 @@
 
 <cr:choose>
     <cr:when test="${user != null}">
-		<a id="maalr-current-user" href="<cr:url value='/j_spring_security_logout'/>">
+		<a style="color:#6FB8CE;" id="maalr-current-user" href="<cr:url value='/j_spring_security_logout'/>">
 			<fmt:message key="maalr.user.logout">
 				<fmt:param>${user.getDisplayName()}</fmt:param>
 			</fmt:message> 
 		</a>
     </cr:when>
     <cr:otherwise>
-		<a href="${dictContext}/login.html">
+		<a style="color:#6FB8CE;" href="${dictContext}/login.html">
 			<fmt:message key="maalr.user.login" />
 		</a>
     </cr:otherwise>

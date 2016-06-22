@@ -55,7 +55,9 @@ public class Configuration {
 	private static final String MONGODB_HOST = "mongodb.host";
 
 	private static final String MONGODB_NAME = "mongodb.name";
-
+	
+	private static final String MONGODB_USER_NAME = "mongodb.user.name";
+	
 	private static final String LONG_NAME = "maalr.long.name";
 
 	private static final String SHORT_NAME = "maalr.short.name";
@@ -257,5 +259,9 @@ public class Configuration {
 
 	public String getDbName() {
 		return properties.getProperty(MONGODB_NAME);
+	}
+	
+	public String getUserDbName() {
+		return properties.getProperty(MONGODB_USER_NAME);
 	}
 }

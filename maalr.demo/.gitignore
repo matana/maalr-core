@@ -9,3 +9,5 @@ bin/
 *.jar
 
 embedmongo.log
+
+maalr.demo/.settings/org.eclipse.core.resources.prefs

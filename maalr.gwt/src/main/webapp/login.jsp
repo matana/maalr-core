@@ -20,13 +20,11 @@
 		<div>
 		
 			<%-- INTERNAL SIGN IN --%>
-			<div class="container well" id="login_container">
+			<div class="container" style="margin-top:150px;">
 				<h1><fmt:message key="maalr.login.header" /></h1>
-				<br>
 				<%-- login info text  --%>
 				<div id="maalr_login_info">
-					<span class="glyphicon icon-info-sign"></span>
-					<p><fmt:message key="maalr.login.welcome" /></p>
+					<p style="margin:0px;"><span class="glyphicon icon-info-sign"> </span><fmt:message key="maalr.login.welcome" /></p>
 				</div>
 				<hr>
 				<c:if test="${not empty param.login_error}">
@@ -43,7 +41,7 @@
 							<input id="upwd" type='password' name='j_password'>
 						</div>
 						<div class="button_wrapper">
-							<input name="submit" type="submit" value=<fmt:message key="maalr.login.sendButton"/> id="internal_login">
+							<input class="btn" name="submit" type="submit" value=<fmt:message key="maalr.login.sendButton"/>>
 						</div>
 					</div>
 				</form>

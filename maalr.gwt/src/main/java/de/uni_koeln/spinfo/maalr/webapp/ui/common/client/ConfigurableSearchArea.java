@@ -32,12 +32,13 @@ import com.github.gwtbootstrap.client.ui.Fieldset;
 import com.github.gwtbootstrap.client.ui.Form;
 import com.github.gwtbootstrap.client.ui.ListBox;
 import com.github.gwtbootstrap.client.ui.RadioButton;
-import com.github.gwtbootstrap.client.ui.base.TextBox;
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.github.gwtbootstrap.client.ui.constants.FormType;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -92,19 +93,27 @@ import de.uni_koeln.spinfo.maalr.webapp.ui.common.client.i18n.LocalizedStrings;
  */
 public class ConfigurableSearchArea extends Form {
 	
-	private Button submit;
-	private TreeMap<String, String> currentValues = new TreeMap<String, String>();
-	private Map<String, Widget> elementsById = new HashMap<String, Widget>();
-	private Map<String, String> defaultsById = new HashMap<String, String>();
-	private UiConfiguration configuration;
-	private UiConfiguration defaultConfiguration;
-	private UiConfiguration extendedConfiguration;
-	private SimplePanel optionsPanel;
 	private static final int QUERY_SCHEDULER_DELAY = 150;
 	private final HistoryTimer historyTimer = new HistoryTimer();
 	private SearchServiceAsync service;
-	private IResultDisplay resultDisplay;
+	
+	private Button submit;
 	private Button extended;
+	
+	
+	private UiConfiguration configuration;
+	private UiConfiguration defaultConfiguration;
+	private UiConfiguration extendedConfiguration;
+	
+	private TreeMap<String, String> currentValues = new TreeMap<String, String>();
+	
+	private Map<String, Widget> elementsById = new HashMap<String, Widget>();
+	private Map<String, String> defaultsById = new HashMap<String, String>();
+	
+	private SimplePanel optionsPanel;
+	
+	private IResultDisplay resultDisplay;
+	
 	private TextBox focusWidget;
 	private boolean withHistory;
 	private String historyPrefix;
@@ -205,7 +214,9 @@ public class ConfigurableSearchArea extends Form {
 		this.resultDisplay = resultDisplay;
 		this.withHistory = withHistory;
 		this.historyPrefix = historyPrefix;
-		setType(FormType.INLINE);
+		//setType(FormType.INLINE);
+		setType(FormType.SEARCH);
+		
 		optionsPanel = new SimplePanel();
 		
 		// Wrap the search area
@@ -282,8 +293,7 @@ public class ConfigurableSearchArea extends Form {
 			ControlLabel label = new ControlLabel(field.getLabel());
 			group.add(label);
 		}
-		Controls controls = new Controls();
-		group.add(controls);
+		
 		Widget widget = null;
 		switch(field.getType()) {
 			case CHECKBOX: widget = buildCheckBox(field); break;
@@ -304,7 +314,10 @@ public class ConfigurableSearchArea extends Form {
 		currentValues.put(field.getId(), field.getInitialValue());
 		elementsById.put(field.getId(), widget);
 		defaultsById.put(field.getId(), field.getInitialValue());
-		group.add(widget);
+		//group.add(widget);
+		
+		Controls controls = new Controls();
+		controls.add(widget);
 		
 		if(field.hasSubmitButton()) {
 			submit = new Button(field.getSubmitLabel());
@@ -320,8 +333,10 @@ public class ConfigurableSearchArea extends Form {
 					fireUpdate();
 				}
 			});
-			group.add(submit);
+			controls.add(submit);
 		}
+		
+		group.add(controls);
 		return group;
 	}
 	
@@ -449,7 +464,7 @@ public class ConfigurableSearchArea extends Form {
 	private Widget buildTextBox(final UiField field) {
 		final TextBox box = new TextBox();
 		box.setValue(field.getInitialValue());
-		
+		box.setSearchQuery(true);
 		box.addKeyDownHandler(new KeyDownHandler() {
 			
 			@Override

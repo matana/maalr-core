@@ -27,7 +27,7 @@
 		</profile>
 	
 		<profile>
-			<id>dict-ru</id>
+			<id>dict-koelsch</id>
 			<properties>
 				<maalr.config.dir>src/test/resources/maalr_russian</maalr.config.dir>		
 			</properties>
